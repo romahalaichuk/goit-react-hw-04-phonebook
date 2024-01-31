@@ -34,7 +34,11 @@ class App extends Component {
     }
 
     for (let i = 0; i < arr1.length; i++) {
-      if (arr1[i] !== arr2[i]) {
+      if (
+        arr1[i].id !== arr2[i].id ||
+        arr1[i].name !== arr2[i].name ||
+        arr1[i].number !== arr2[i].number
+      ) {
         return false;
       }
     }
@@ -78,8 +82,7 @@ class App extends Component {
         <h2 className={styles.title}>Contacts</h2>
         <Filter
           filter={filter}
-          setFilter={(value) => this.setState({ filter: value })}
-
+          setFilter={value => this.setState({ filter: value })}
         />
         <ContactList
           contacts={filteredContacts}
