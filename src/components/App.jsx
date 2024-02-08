@@ -7,12 +7,10 @@ import { nanoid } from 'nanoid';
 import styles from './App.module.css';
 
 const App = () => {
-  // Initial state
   const initialContacts = JSON.parse(localStorage.getItem('contacts')) || [];
   const [contacts, setContacts] = useState(initialContacts);
   const [filter, setFilter] = useState('');
 
-  // Effect to update localStorage when contacts change
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
   }, [contacts]);
@@ -43,7 +41,11 @@ const App = () => {
 
       <h2 className={styles.title}>Contacts</h2>
       <Filter filter={filter} setFilter={setFilter} />
-      <ContactList contacts={contacts} deleteContact={deleteContact} />
+      <ContactList
+        contacts={contacts}
+        deleteContact={deleteContact}
+        filter={filter}
+      />
     </div>
   );
 };
